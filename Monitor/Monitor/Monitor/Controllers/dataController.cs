@@ -21,14 +21,7 @@ namespace Monitor.Controllers
             string dateStr = null;
             string cowId = db.cow.First().cowId;
             transfer(cowId, 7, 0,out dataStr,out dateStr);
-            if (dataStr != null)
-            {
-                dataStr = dataStr.Substring(0, dataStr.Length - 1);
-            }
-            if (dateStr != null)
-            {
-                dateStr = dateStr.Substring(0, dateStr.Length - 1);
-            }
+            
             ViewBag.data = dataStr;
             ViewBag.date = dateStr;
             ViewBag.cowId = new SelectList(db.cow, "cowId", "cowId");
@@ -38,12 +31,19 @@ namespace Monitor.Controllers
             return View();
         }
 
-        public ContentResult show(string cowId, string during, string threshold, string grading)
+        [HttpPost]
+        public ActionResult show(string cowId, string during, string threshold, string grading)
         {
             string dataStr = null;
             string dateStr = null;
             transfer(cowId, int.Parse(during), int.Parse(threshold), out dataStr, out dateStr);
-            return Content("{dataStr: "+dataStr+", datestr: "+dateStr+"}");
+
+
+            return Json(new
+            {
+                data = dataStr,
+                date = dateStr
+            });
         }
 
         public void transfer(string cowId,int dayCount,int threshold,out string dataStr,out string dateStr)
@@ -70,6 +70,14 @@ namespace Monitor.Controllers
                     dateStr += today.ToShortDateString() + ",";
                 }
                 today = DateTime.Now.AddDays(-dayCount+2+i);
+            }
+            if (dataStr != null)
+            {
+                dataStr = dataStr.Substring(0, dataStr.Length - 1);
+            }
+            if (dateStr != null)
+            {
+                dateStr = dateStr.Substring(0, dateStr.Length - 1);
             }
         }
 

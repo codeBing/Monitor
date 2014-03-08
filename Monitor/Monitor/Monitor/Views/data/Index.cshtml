@@ -71,6 +71,7 @@
         labels = dateStr.split(",");
 
         var line = new iChart.LineBasic2D({
+            id:'myChart',
             render: 'canvasDiv',
             data: data,
             
@@ -130,15 +131,82 @@
         //开始画图
         line.draw();
     });
+
     $("select").change(function () {
-        alert($("#cowId").val() + $("#during").val() + $("#threshold").val() + $("#grading").val());
-        $.get("/Data/show", { cowId: $("#cowId").val(), during: $("#during").val(), threshold: $("#threshold").val(), grading: $("#grading").val() }, function (str) {
-            alert(str);
-            //var obj = eval(str);
-            //alert(obj);
-            //$.each(obj, function (item, value) {
-            //    alert(item + ":" + obj[item]);
-            //});
+        $.post("/Data/show", { cowId: $("#cowId").val(), during: $("#during").val(), threshold: $("#threshold").val(), grading: $("#grading").val() }, function (str) {
+            ch = new Array;
+            ch = str.data.split(",");
+            var data = [
+                        {
+                            name: '',
+                            value: ch,
+                            color: '#0d8ecf',
+                            line_width: 2
+                        }
+            ];
+            labels = new Array;
+            labels = str.date.split(",");
+            //var chart = iChart.get('myChart');//根据ID获取图表对象
+            //chart.load(data);//载入新数据
+            var line = new iChart.LineBasic2D({
+                render: 'canvasDiv',
+                data: data,
+
+                align: 'center',
+                title: '奶牛原始数据曲线',
+                width: 900,
+                height: 600,
+
+                sub_option: {
+                    smooth: true,//平滑曲线
+                    point_size: 1,
+                    label: false
+                },
+                tip: {
+                    enable: true,
+                    shadow: true
+                },
+                legend: {
+                    enable: false
+                },
+                crosshair: {
+                    enable: true,
+                    line_color: '#62bce9'
+                },
+                coordinate: {
+                    width: '90%',
+                    valid_width: '100%',
+                    height: 260,
+                    axis: {
+                        color: '#9f9f9f',
+                        width: [0, 0, 2, 2]
+                    },
+                    grids: {
+                        vertical: {
+                            way: 'share_alike',
+                            value: 12
+                        }
+                    },
+                    scale: [{
+                        position: 'left',
+                        start_scale: 0,
+                        //scale_space: 10,
+                        scale_size: 2,
+                        scale_color: '#9f9f9f'
+                    }, {
+                        position: 'bottom',
+                        label: {
+                            rotate: -45,
+                            textBaseline: 'middle',
+                            textAlign: 'right'
+
+                        },
+                        labels: labels
+                    }]
+                }
+            });
+            //开始画图
+            line.draw();
         });
     })
 
