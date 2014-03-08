@@ -42,9 +42,9 @@
     <div class="col-lg-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                奶牛运动量数据曲线
+                奶牛发情指数数据曲线
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="hanxingDiv">
             </div>
         </div>
     </div>
@@ -70,15 +70,26 @@
         labels = new Array;
         labels = dateStr.split(",");
 
+        var hanxing = "@ViewBag.hanxingData";
+        ch2 = new Array;
+        ch2 = hanxing.split(",");
+        var data2 = [
+                    {
+                        name: '',
+                        value: ch2,
+                        color: '#0d8ecf',
+                        line_width: 2
+                    }
+        ];
+
         var line = new iChart.LineBasic2D({
-            id:'myChart',
             render: 'canvasDiv',
             data: data,
             
             align: 'center',
             title: '奶牛原始数据曲线',
             width: 900,
-            height: 600,
+            height: 450,
             
             sub_option: {
                 smooth: true,//平滑曲线
@@ -130,6 +141,65 @@
         });
         //开始画图
         line.draw();
+        var line2 = new iChart.LineBasic2D({
+            render: 'hanxingDiv',
+            data: data2,
+
+            align: 'center',
+            title: '奶牛发情指数曲线',
+            width: 900,
+            height: 450,
+
+            sub_option: {
+                smooth: true,//平滑曲线
+                point_size: 1,
+                label: false
+            },
+            tip: {
+                enable: true,
+                shadow: true
+            },
+            legend: {
+                enable: false
+            },
+            crosshair: {
+                enable: true,
+                line_color: '#62bce9'
+            },
+            coordinate: {
+                width: '90%',
+                valid_width: '100%',
+                height: 260,
+                axis: {
+                    color: '#9f9f9f',
+                    width: [0, 0, 2, 2]
+                },
+                grids: {
+                    vertical: {
+                        way: 'share_alike',
+                        value: 12
+                    }
+                },
+                scale: [{
+                    position: 'left',
+                    start_scale: 0,
+                    //scale_space: 10,
+                    scale_size: 2,
+                    scale_color: '#9f9f9f'
+                }, {
+                    position: 'bottom',
+                    label: {
+                        rotate: -45,
+                        textBaseline: 'middle',
+                        textAlign: 'right'
+
+                    },
+                    labels: labels
+                }]
+            }
+        });
+        //开始画图
+        line2.draw();
     });
 
     $("select").change(function () {
@@ -146,8 +216,18 @@
             ];
             labels = new Array;
             labels = str.date.split(",");
+            ch2 = new Array;
+            ch2 = str.hanxing.split(",");
             //var chart = iChart.get('myChart');//根据ID获取图表对象
             //chart.load(data);//载入新数据
+            var data2 = [
+                    {
+                        name: '',
+                        value: ch2,
+                        color: '#0d8ecf',
+                        line_width: 2
+                    }
+            ];
             var line = new iChart.LineBasic2D({
                 render: 'canvasDiv',
                 data: data,
@@ -155,7 +235,7 @@
                 align: 'center',
                 title: '奶牛原始数据曲线',
                 width: 900,
-                height: 600,
+                height: 450,
 
                 sub_option: {
                     smooth: true,//平滑曲线
@@ -207,6 +287,65 @@
             });
             //开始画图
             line.draw();
+            var line2 = new iChart.LineBasic2D({
+                render: 'hanxingDiv',
+                data: data2,
+
+                align: 'center',
+                title: '奶牛发情指数曲线',
+                width: 900,
+                height: 450,
+
+                sub_option: {
+                    smooth: true,//平滑曲线
+                    point_size: 1,
+                    label: false
+                },
+                tip: {
+                    enable: true,
+                    shadow: true
+                },
+                legend: {
+                    enable: false
+                },
+                crosshair: {
+                    enable: true,
+                    line_color: '#62bce9'
+                },
+                coordinate: {
+                    width: '90%',
+                    valid_width: '100%',
+                    height: 260,
+                    axis: {
+                        color: '#9f9f9f',
+                        width: [0, 0, 2, 2]
+                    },
+                    grids: {
+                        vertical: {
+                            way: 'share_alike',
+                            value: 12
+                        }
+                    },
+                    scale: [{
+                        position: 'left',
+                        start_scale: 0,
+                        //scale_space: 10,
+                        scale_size: 2,
+                        scale_color: '#9f9f9f'
+                    }, {
+                        position: 'bottom',
+                        label: {
+                            rotate: -45,
+                            textBaseline: 'middle',
+                            textAlign: 'right'
+
+                        },
+                        labels: labels
+                    }]
+                }
+            });
+            //开始画图
+            line2.draw();
         });
     })
 

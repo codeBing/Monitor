@@ -183,10 +183,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ComputeHanXing.cs" />
     <Compile Include="Controllers\cowController.cs" />
     <Compile Include="Controllers\dataController.cs" />
     <Compile Include="Controllers\deviceController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\tempController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -376,6 +377,7 @@
     <Content Include="Views\device\Edit.cshtml" />
     <Content Include="Views\device\Delete.cshtml" />
     <Content Include="Views\data\Index.cshtml" />
+    <Content Include="Views\temp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

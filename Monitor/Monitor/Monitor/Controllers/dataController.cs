@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Monitor.Models;
+using HanXing;
 
 namespace Monitor.Controllers
 {
@@ -18,12 +19,14 @@ namespace Monitor.Controllers
         public ActionResult Index()
         {
             string dataStr = null;
+            string hanxingData = null;
             string dateStr = null;
             string cowId = db.cow.First().cowId;
             transfer(cowId, 7, 0,out dataStr,out dateStr);
-            
+            hanxingData = computeHan(dataStr);
             ViewBag.data = dataStr;
             ViewBag.date = dateStr;
+            ViewBag.hanxingData = hanxingData;
             ViewBag.cowId = new SelectList(db.cow, "cowId", "cowId");
             ViewBag.during = new SelectList(new string[] { "7", "14", "30", "37" });
             ViewBag.threshold = new SelectList(new string[] { "0", "1", "2" });
@@ -36,14 +39,22 @@ namespace Monitor.Controllers
         {
             string dataStr = null;
             string dateStr = null;
+            string hanxingData = null;
             transfer(cowId, int.Parse(during), int.Parse(threshold), out dataStr, out dateStr);
-
+            hanxingData = computeHan(dataStr);
 
             return Json(new
             {
                 data = dataStr,
-                date = dateStr
+                date = dateStr,
+                hanxing = hanxingData
             });
+        }
+
+        public string computeHan(string dataStr)
+        {
+            dataStr = ComputeHanXing.result(dataStr);
+            return dataStr;
         }
 
         public void transfer(string cowId,int dayCount,int threshold,out string dataStr,out string dateStr)
