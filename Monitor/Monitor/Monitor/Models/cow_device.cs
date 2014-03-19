@@ -20,9 +20,12 @@ namespace Monitor.Models
         public string cowId { get; set; }
         [Required]
         [Display(Name = "设备编号")]
+        public string showDeviceId { get; set; }
         public string deviceId { get; set; }
         [Display(Name = "备注")]
         [DataType(DataType.MultilineText)]
         public string remarks { get; set; }
+        
+        
     }
 }

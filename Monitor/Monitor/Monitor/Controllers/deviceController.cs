@@ -50,10 +50,11 @@ namespace Monitor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(cow_device cow_device)
         {
-            
+
             if (ModelState.IsValid)
             {
-                var item = db.cow_device.AsNoTracking().SingleOrDefault(g => g.deviceId == cow_device.deviceId);
+                var item = db.cow_device.AsNoTracking().SingleOrDefault(g => g.showDeviceId == cow_device.showDeviceId);
+                
                 if (item != null && item.id != cow_device.id)
                 {
                     ViewBag.cowId = new SelectList(db.cow, "cowId", "cowId");
@@ -69,7 +70,7 @@ namespace Monitor.Controllers
                         db.Entry(device).State = EntityState.Modified;
                     }
                 }
-                
+                cow_device.deviceId = ConvertToTen(cow_device.showDeviceId);
                 db.cow_device.Add(cow_device);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -89,7 +90,7 @@ namespace Monitor.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.cowId = new SelectList(db.cow, "cowId", "cowId",cow_device.cowId);
+            ViewBag.cowId = new SelectList(db.cow, "cowId", "cowId", cow_device.cowId);
             return View(cow_device);
         }
 
@@ -112,7 +113,7 @@ namespace Monitor.Controllers
                 if (cow_device.cowId != null)
                 {
                     cow_device device = db.cow_device.AsNoTracking().SingleOrDefault(g => g.cowId == cow_device.cowId);
-                    if (device != null&&device.deviceId!=cow_device.deviceId)
+                    if (device != null && device.deviceId != cow_device.deviceId)
                     {
                         device.cowId = null;
                         db.Entry(device).State = EntityState.Modified;
@@ -150,6 +151,51 @@ namespace Monitor.Controllers
             db.cow_device.Remove(cow_device);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //十六进制转换成十进制
+        private string ConvertToTen(string number)
+        {
+            char[] nums = number.ToCharArray();
+            int total = 0;
+            try
+            {
+                for (int i = 0; i < nums.Length; ++i)
+                {
+                    String strNum = nums[i].ToString().ToUpper();
+                    switch (strNum)
+                    {
+                        case "A":
+                            strNum = "10";
+                            break;
+                        case "B":
+                            strNum = "11";
+                            break;
+                        case "C":
+                            strNum = "12";
+                            break;
+                        case "D":
+                            strNum = "13";
+                            break;
+                        case "E":
+                            strNum = "14";
+                            break;
+                        case "F":
+                            strNum = "15";
+                            break;
+                        default:
+                            break;
+                    }
+                    double power = Math.Pow(16, Convert.ToDouble(nums.Length - i - 1));
+                    total += Convert.ToInt32(strNum) * Convert.ToInt32(power);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                String strErorr = ex.ToString();
+                return null;
+            }
+            return total.ToString();
         }
 
         protected override void Dispose(bool disposing)

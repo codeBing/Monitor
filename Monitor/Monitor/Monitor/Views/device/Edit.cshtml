@@ -20,11 +20,11 @@
                 @Html.HiddenFor(model => model.id)
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.deviceId)
+                    @Html.LabelFor(model => model.showDeviceId)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.deviceId)
-                    @Html.ValidationMessageFor(model => model.deviceId)
+                    @Html.EditorFor(model => model.showDeviceId)
+                    @Html.ValidationMessageFor(model => model.showDeviceId)
                 </div>
                 <p>@ViewBag.error</p>
                 <div class="editor-label">

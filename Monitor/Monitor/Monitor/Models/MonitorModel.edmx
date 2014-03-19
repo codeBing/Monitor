@@ -19,8 +19,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cowId" Type="varchar" MaxLength="255" />
+          <Property Name="showDeviceId" Type="varchar" MaxLength="255" />
           <Property Name="deviceId" Type="varchar" MaxLength="255" />
+          <Property Name="cowId" Type="varchar" MaxLength="255" />
           <Property Name="remarks" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="data">
@@ -120,6 +121,7 @@
           <Property Name="cowId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="deviceId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="showDeviceId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="data">
           <Key>
@@ -216,6 +218,7 @@
           <EntitySetMapping Name="cow_device">
             <EntityTypeMapping TypeName="testModel.cow_device">
               <MappingFragment StoreEntitySet="cow_device">
+                <ScalarProperty Name="showDeviceId" ColumnName="showDeviceId" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cowId" ColumnName="cowId" />
                 <ScalarProperty Name="deviceId" ColumnName="deviceId" />
