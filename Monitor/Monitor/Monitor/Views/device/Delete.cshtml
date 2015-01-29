@@ -1,0 +1,37 @@
+﻿@model Monitor.Models.cow_device
+
+@{
+    ViewBag.Title = "删除";
+}
+
+<h3>确定要删除这条数据吗？</h3>
+<fieldset>
+    <legend>设备数据</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cowId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cowId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.deviceId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.deviceId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.remarks)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.remarks)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="删除" />
+    </p>
+}

@@ -1,0 +1,224 @@
+﻿
+body {
+    background: url(../img/backgrounds/1.jpg) center center no-repeat;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #fff;
+    text-align: center;
+}
+
+.page {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page p
+{
+    margin: 60px 0 10px 0;
+padding: 0 120px;
+font-size: 22px;
+line-height: 36px;
+}
+
+header, #header {
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+header h1, #header h1 {
+    font-weight: bold;
+    padding: 30px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-size: 32px !important;
+    text-shadow: 1px 1px 2px #111;
+}
+
+strong { font-weight: 700; }
+.href a
+{
+    color: #fff;
+border-bottom: 1px dotted #fff;
+}
+a, a:hover, a:focus {
+	color: #42bfc2;
+	text-decoration: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+h2 {
+	margin-top: 10px;
+	font-size: 42px;
+    font-weight: 100;
+    line-height: 54px;
+}
+
+img { max-width: 100%; }
+
+::-moz-selection { background: #42bfc2; color: #fff; text-shadow: none; }
+::selection { background: #42bfc2; color: #fff; text-shadow: none; }
+
+#main {
+    background:#fff;
+    border-radius: 4px 0 0 0;
+    -webkit-border-radius: 4px 0 0 0;
+    -moz-border-radius: 4px 0 0 0;
+    margin:0 auto;
+    width:70%;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    padding: 0;
+    color: #696969;
+    text-align:justify;
+}
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align:left;
+}
+/***** Coming Soon *****/
+
+
+.subscribe {
+	margin-top: 60px;
+}
+
+.subscribe form input {
+    width: 362px;
+    height: 52px;
+}
+input[type="text"] {
+    margin: 0;
+    padding: 0 10px;
+    vertical-align: middle;
+    background: none;
+    border: 1px solid #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #fff;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+input[type="text"]:focus {
+	outline: 0;
+    border: 1px solid #fff;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+input[type="text"]:-moz-placeholder { color: #fff; }
+input[type="text"]:-ms-input-placeholder { color: #fff; }
+input[type="text"]::-webkit-input-placeholder { color: #fff; }
+
+
+.subscribe button {
+	height: 52px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #ff5a56;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 52px;
+    color: #fff;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    text-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+.subscribe button:hover {
+    background: #555;
+    color: #fff;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+.subscribe button:active {
+	outline: 0;
+    background: #555;
+    color: #fff;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.subscribe button:focus {
+	outline: 0;
+	background: #555;
+	color: #fff;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+	outline: 0;
+	background: #555;
+	color: #fff;
+}
+
+
+/***** Footer *****/
+
+footer {
+	margin-top: 60px;
+	padding: 20px 0 15px 0;
+	background: #3d3d3d;
+	background: rgba(61, 61, 61, 0.3);
+}
+
+.footer-copyright p {
+	margin: 0;
+	font-size: 18px;
+    line-height: 32px;
+    color: #fff;
+    text-align: left;
+}
+
+.footer-copyright a { color: #fff; border-bottom: 1px dotted #fff; }
+.footer-copyright a:hover { color: #fff; border: 0; }
+
+.footer-social {
+	text-align: right;
+}
+
+
+

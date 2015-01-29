@@ -1,0 +1,18 @@
+﻿#homeForm
+{
+    margin-top:100px;
+    margin-left:300px;
+}
+#searchForm
+{
+    margin:10px auto;
+}
+#searchNum
+{
+    width: 362px;
+    height: 40px;
+}
+.form-input button
+{
+        height: 40px;
+}

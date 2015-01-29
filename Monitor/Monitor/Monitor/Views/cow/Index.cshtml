@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Monitor.Models.cow>
+
+@{
+    ViewBag.Title = "奶牛管理";
+}
+
+<!-- DataTables CSS -->
+<div class="container-fluid">
+    <div class="row"></div>
+    <div class="row" style="padding:20px;">
+        <!-- /.col-lg-12 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">奶牛列表</div>
+            <div class="panel-body">
+                <div class="col-lg-8">
+                    <div class="table-responsive">
+                        <table class="table  table-hover" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        奶牛编号
+                                    </th>
+                                    <th>
+                                        年龄
+                                    </th>
+                                    <th class="col-lg-6">
+                                        备注
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cowId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.age)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.remarks)
+                                        </td>
+                                        
+                                        <td>
+                                            @Html.ActionLink("编辑", "Edit", new { id = item.id })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("删除", "Delete", new { id = item.id })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').dataTable();
+            alert("saca");
+        });
+    </script>*@

@@ -1,0 +1,53 @@
+﻿@model Monitor.Models.cow_device
+
+@{
+    ViewBag.Title = "编辑";
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/addCss.js")" type="text/javascript"></script>
+<div class="page-header"><h2>编辑设备</h2></div>
+<div class="row">
+    <div class="col-lg-6">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                @Html.HiddenFor(model => model.id)
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.deviceId)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.deviceId)
+                    @Html.ValidationMessageFor(model => model.deviceId)
+                </div>
+                <p>@ViewBag.error</p>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.cowId)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("cowId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.cowId)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.remarks)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.remarks)
+                    @Html.ValidationMessageFor(model => model.remarks)
+                </div>
+
+                <p>
+                    <input type="submit" value="保存" />
+                </p>
+            </fieldset>
+        }
+    </div>
+    
+</div>
