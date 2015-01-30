@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\cowController.cs" />
+    <Compile Include="Controllers\dataController.cs" />
     <Compile Include="Controllers\deviceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -317,6 +318,7 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\addCss.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ichart.1.2.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -373,6 +375,7 @@
     <Content Include="Views\device\Create.cshtml" />
     <Content Include="Views\device\Edit.cshtml" />
     <Content Include="Views\device\Delete.cshtml" />
+    <Content Include="Views\data\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
