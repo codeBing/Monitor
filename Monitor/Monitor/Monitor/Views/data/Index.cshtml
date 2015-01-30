@@ -1,11 +1,9 @@
 ﻿@model Monitor.Models.data
-
 @{
     ViewBag.Title = "Index";
 }
 <script src="@Url.Content("~/Scripts/addCss.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ichart.1.2.min.js")" type="text/javascript"></script>
-
 
 <div class="page-header"><h2>历史数据查询</h2></div>
 <div class="row">
@@ -47,7 +45,6 @@
                 奶牛运动量数据曲线
             </div>
             <div class="panel-body">
-
             </div>
         </div>
     </div>
@@ -58,13 +55,6 @@
         var str = "@ViewBag.data";
         ch = new Array;
         ch = str.split(",");
-        //var flow=[];
-        //str = '';
-        //for(var i=0;i<ch.length;i++){
-        //    flow.push(ch[i]);
-        //    str += ch[i];
-        //}
-        //alert(str);
         var data = [
                     {
                         name: '',
@@ -76,18 +66,23 @@
         //var w = document.all.abc.offsetWidth;
         //var h = a = document.all.abc.offsetHeight;
         //alert(w, h);
-        var labels = ["2012-12-01", "2012-12-02", "2012-12-03", "2012-12-04", "2012-12-05", "2012-12-06"];
-        
+        var dateStr = "@ViewBag.date";
+        labels = new Array;
+        labels = dateStr.split(",");
+
         var line = new iChart.LineBasic2D({
             render: 'canvasDiv',
             data: data,
+            
             align: 'center',
             title: '奶牛原始数据曲线',
             width: 900,
             height: 600,
+            
             sub_option: {
                 smooth: true,//平滑曲线
-                point_size: 10
+                point_size: 1,
+                label: false
             },
             tip: {
                 enable: true,
@@ -102,7 +97,7 @@
             },
             coordinate: {
                 width: '90%',
-                valid_width: '90%',
+                valid_width: '100%',
                 height: 260,
                 axis: {
                     color: '#9f9f9f',
@@ -117,12 +112,17 @@
                 scale: [{
                     position: 'left',
                     start_scale: 0,
-                    end_scale: 100,
-                    scale_space: 10,
+                    //scale_space: 10,
                     scale_size: 2,
                     scale_color: '#9f9f9f'
                 }, {
                     position: 'bottom',
+                    label: {
+                        rotate: -45,
+                        textBaseline: 'middle',
+                        textAlign: 'right'
+                        
+                    },
                     labels: labels
                 }]
             }
@@ -130,4 +130,14 @@
         //开始画图
         line.draw();
     });
+    $("select").change(function () {
+        alert($("#cowId").val() + $("#during").val() + $("#threshold").val() + $("#grading").val());
+        $.get("/Data/show", { cowId: $("#cowId").val(), during: $("#during").val(), threshold: $("#threshold").val(), grading: $("#grading").val() }, function (str) {
+            var obj = eval(str);
+            $.each(obj, function (item, value) {
+                alert(item + ":" + obj[item]);
+            });
+        });
+    })
+
 </script>
