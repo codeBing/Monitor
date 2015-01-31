@@ -133,10 +133,12 @@
     $("select").change(function () {
         alert($("#cowId").val() + $("#during").val() + $("#threshold").val() + $("#grading").val());
         $.get("/Data/show", { cowId: $("#cowId").val(), during: $("#during").val(), threshold: $("#threshold").val(), grading: $("#grading").val() }, function (str) {
-            var obj = eval(str);
-            $.each(obj, function (item, value) {
-                alert(item + ":" + obj[item]);
-            });
+            alert(str);
+            //var obj = eval(str);
+            //alert(obj);
+            //$.each(obj, function (item, value) {
+            //    alert(item + ":" + obj[item]);
+            //});
         });
     })
 
