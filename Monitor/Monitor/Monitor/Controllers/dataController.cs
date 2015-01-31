@@ -62,7 +62,7 @@ namespace Monitor.Controllers
             DateTime today = DateTime.Now.AddDays(-dayCount+1);
             dateStr = "";
             dataStr = "";
-            for (int i = 0, j = 0; i < dayCount; ++i)
+            for (int i = 0; i < dayCount; ++i)
             {
                 string cmd = "SELECT * FROM `data` where date='" + today.ToString("yyyy/MM/dd") + "' AND cowId = " + cowId + " AND threshold = " + threshold + ";";
                 var list = db.data.SqlQuery(cmd).ToList();

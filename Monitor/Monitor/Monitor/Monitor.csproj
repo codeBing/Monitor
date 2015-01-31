@@ -316,6 +316,7 @@
     <Content Include="Content\themes\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\themes\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\themes\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\MonitorWebConfig.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\addCss.js" />
     <Content Include="Scripts\bootstrap.min.js" />
