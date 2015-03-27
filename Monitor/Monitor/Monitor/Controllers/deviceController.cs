@@ -53,7 +53,16 @@ namespace Monitor.Controllers
 
             if (ModelState.IsValid)
             {
-                var item = db.cow_device.AsNoTracking().SingleOrDefault(g => g.showDeviceId == cow_device.showDeviceId);
+                //把十六进制转换成十进制
+                cow_device.deviceId = ConvertToTen(cow_device.showDeviceId);
+                //如果转换出现异常则返回页面
+                if (cow_device.deviceId == null)
+                {
+                    ViewBag.cowId = new SelectList(db.cow, "cowId", "cowId");
+                    ViewBag.error = "请输入十六进制设备编号";
+                    return View(cow_device);
+                }
+                var item = db.cow_device.AsNoTracking().SingleOrDefault(g => g.deviceId == cow_device.deviceId);
                 
                 if (item != null && item.id != cow_device.id)
                 {
@@ -61,6 +70,7 @@ namespace Monitor.Controllers
                     ViewBag.error = "设备编号重复，请修改";
                     return View(cow_device);
                 }
+                
                 if (cow_device.cowId != null)
                 {
                     cow_device device = db.cow_device.AsNoTracking().SingleOrDefault(g => g.cowId == cow_device.cowId);
@@ -70,7 +80,7 @@ namespace Monitor.Controllers
                         db.Entry(device).State = EntityState.Modified;
                     }
                 }
-                cow_device.deviceId = ConvertToTen(cow_device.showDeviceId);
+                
                 db.cow_device.Add(cow_device);
                 db.SaveChanges();
                 return RedirectToAction("Index");
