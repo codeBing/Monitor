@@ -113,6 +113,16 @@ namespace Monitor.Controllers
         {
             if (ModelState.IsValid)
             {
+                //把十六进制转换成十进制
+                cow_device.deviceId = ConvertToTen(cow_device.showDeviceId);
+                //如果转换出现异常则返回页面
+                if (cow_device.deviceId == null)
+                {
+                    ViewBag.cowId = new SelectList(db.cow, "cowId", "cowId");
+                    ViewBag.error = "请输入十六进制设备编号";
+                    return View(cow_device);
+                }
+
                 var item = db.cow_device.AsNoTracking().SingleOrDefault(g => g.deviceId == cow_device.deviceId);
                 if (item != null && item.id != cow_device.id)
                 {
